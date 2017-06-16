@@ -16,7 +16,7 @@ import olympicsnetbeansproject.OlympicsNetBeansProject;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    User currentUser;
+    User currentUser = new User("Chris", "Chris", "Chris", "Chris", 1);
 
     /**
      * Creates new form MainFrame
@@ -91,6 +91,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(loginLayout.createSequentialGroup()
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(logTitle))
+                    .addGroup(loginLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(loginLayout.createSequentialGroup()
@@ -100,13 +103,10 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addComponent(userLBL)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(loginLayout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(logTitle))
-                    .addGroup(loginLayout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jButton1)))
+                                .addComponent(userTF, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(loginLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(133, 133, 133)))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
@@ -122,9 +122,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passLBL)
                     .addComponent(passTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         getContentPane().add(login, "card3");
@@ -280,12 +280,8 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             User tempUser = new User(userLBL.getText(), passLBL.getText());
-            String[] temp = new String[3];
-            temp = OlympicsNetBeansProject.logIn(tempUser.getUsername(), tempUser.getPassword()).split(" ");
-            System.out.println(temp.toString());
-
             if (OlympicsNetBeansProject.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) {
-                currentUser = new User(tempUser.getUsername(), tempUser.getPassword(), temp[0], temp[1], Integer.parseInt(temp[2]));
+                System.out.println(currentUser.getUserType());
                 if (currentUser.getUserType() == 0) {
                     CardLayout card = (CardLayout) student.getLayout();
                     card.show(student, "studentCard");
@@ -297,6 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (NullPointerException e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Login Failed");
         }
 
