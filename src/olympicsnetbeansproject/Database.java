@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author michael.roy-diclemen
  */
-public class OlympicsNetBeansProject {
+public class Database {
 
     public static Connection connectDB() {
         Connection connection = null;
@@ -73,7 +73,7 @@ public class OlympicsNetBeansProject {
             rs = stmt.executeQuery("SELECT * FROM users WHERE id = \"" + username + "\"");
             while (rs.next()) {
                 if (password.equals(rs.getObject(2))) {
-                    String thing = rs.getObject(3) + " " + rs.getObject(4) + " "+rs.getObject(5);
+                    String thing = rs.getObject(3) + " " + rs.getObject(4) + " " + rs.getObject(5);
                     return thing;
                 }
             }
@@ -126,16 +126,16 @@ public class OlympicsNetBeansProject {
             System.out.println(e);
         }
     }
-    
-    public static void done(boolean active, String id) throws SQLException{
+
+    public static void done(boolean active, String id) throws SQLException {
         active = false;
         Connection con = connectDB();
         Statement stmt;
         ResultSet rs;
-        try{
+        try {
             stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO questions (active) WHERE id = \"" + id + "\" VALUES \"" + active + "\"");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
