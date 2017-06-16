@@ -41,14 +41,14 @@ public class OlympicsNetBeansProject {
             rs = stmt.executeQuery("SELECT * FROM users WHERE id = \"" + username + "\"");
             while (rs.next()) {
                 if (password.equals(rs.getObject(2))) {
-                    String thing = rs.getObject(3) + " " + rs.getObject(4);
+                    String thing = rs.getObject(3) + " " + rs.getObject(4) + " "+rs.getObject(5);
                     return thing;
                 }
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return "yes";
+        return null;
     }
     
     /**
