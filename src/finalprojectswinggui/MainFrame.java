@@ -8,7 +8,7 @@ package finalprojectswinggui;
 import finalprojectclasses.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
-import olympicsnetbeansproject.OlympicsNetBeansProject;
+import olympicsnetbeansproject.Database;
 
 /**
  *
@@ -281,10 +281,10 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             User tempUser = new User(userLBL.getText(), passLBL.getText());
             String[] temp = new String[3];
-            temp = OlympicsNetBeansProject.logIn(tempUser.getUsername(), tempUser.getPassword()).split(" ");
+            temp = Database.logIn(tempUser.getUsername(), tempUser.getPassword()).split(" ");
             System.out.println(temp.toString());
 
-            if (OlympicsNetBeansProject.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) {
+            if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) {
                 currentUser = new User(tempUser.getUsername(), tempUser.getPassword(), temp[0], temp[1], Integer.parseInt(temp[2]));
                 if (currentUser.getUserType() == 0) {
                     CardLayout card = (CardLayout) student.getLayout();
