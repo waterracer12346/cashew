@@ -19,8 +19,9 @@ import olympicsnetbeansproject.Database;
  * @author Anthony Sare
  */
 public class MainFrame extends javax.swing.JFrame {
+//Current app User
 
-    User currentUser = new User("Chris", "Chris", "Chris", "Chris", 1);
+    User currentUser;
 
     /**
      * Creates new form MainFrame
@@ -395,14 +396,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            User tempUser = new User(userLBL.getText(), passLBL.getText());
-            if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) {
-                if (currentUser.getUserType() == 0) {
-                    CardLayout card = (CardLayout) mainPanel.getLayout();
+            User tempUser = new User(userLBL.getText(), passLBL.getText()); //temp user to compare against database
+            if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) { //If database does not not contain user information
+                String s[] = new String[3]; //String array for returned info
+                s = Database.logIn(tempUser.getUsername(), tempUser.getPassword()).split(","); //Split returned info into array
+                currentUser = new User(userLBL.getText(), passLBL.getText(), s[0], s[1], Integer.parseInt(s[2])); //Set current user to user that has logged in
+                if (currentUser.getUserType() == 0) { //If user is student
+                    CardLayout card = (CardLayout) mainPanel.getLayout(); //Switch Panel
                     card.show(mainPanel, "studentCard");
-
-                } else if (currentUser.getUserType() == 1) {
-                    CardLayout card = (CardLayout) mainPanel.getLayout();
+                } else if (currentUser.getUserType() == 1) { //If user is teacher
+                    CardLayout card = (CardLayout) mainPanel.getLayout();//Switch Panel
                     card.show(mainPanel, "teacherCard");
                 } else {
                     JOptionPane.showMessageDialog(null, "Usertype does not exist");
@@ -422,7 +425,7 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "registerCard");
     }//GEN-LAST:event_jButton2ActionPerformed
-    //Method created by Anthony
+    //Method created by Anthony Sare
     //Send question to database based on paramaters inputted
     private void sendBUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBUTTActionPerformed
         // TODO add your handling code here:
