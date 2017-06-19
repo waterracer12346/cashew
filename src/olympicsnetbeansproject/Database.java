@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author michael.roy-diclemen
+ * @author Chris McLelland
  */
 public class Database {
 
