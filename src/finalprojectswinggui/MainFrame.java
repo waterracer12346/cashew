@@ -7,6 +7,10 @@ package finalprojectswinggui;
 
 import finalprojectclasses.User;
 import java.awt.CardLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import olympicsnetbeansproject.Database;
 
@@ -63,13 +67,18 @@ public class MainFrame extends javax.swing.JFrame {
         priTF = new javax.swing.JLabel();
         priCB = new javax.swing.JComboBox<>();
         sendBUTT = new javax.swing.JButton();
-        registerPanel1 = new finalprojectswinggui.registerPanel();
+        register = new finalprojectswinggui.registerPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         logTitle.setText("Login");
 
@@ -119,7 +128,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jButton1)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(passTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.add(login, "loginCard");
@@ -221,7 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(teacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teacherTitle)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(teacherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentLBL)
                     .addComponent(qDesLBL)
@@ -246,6 +255,11 @@ public class MainFrame extends javax.swing.JFrame {
         priCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         sendBUTT.setText("Send");
+        sendBUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendBUTTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentLayout = new javax.swing.GroupLayout(student);
         student.setLayout(studentLayout);
@@ -253,29 +267,31 @@ public class MainFrame extends javax.swing.JFrame {
             studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentLayout.createSequentialGroup()
                 .addGroup(studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(studentLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(qDesTF, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(studentLayout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addComponent(priTF)
+                            .addGap(18, 18, 18)
+                            .addComponent(priCB, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(122, 122, 122)
+                            .addComponent(sendBUTT)))
                     .addGroup(studentLayout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(studentTitle))
+                        .addContainerGap()
+                        .addComponent(qLBL))
                     .addGroup(studentLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(qLBL)
-                            .addGroup(studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(studentLayout.createSequentialGroup()
-                                    .addComponent(priTF)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(priCB, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sendBUTT))
-                                .addComponent(qDesTF, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                        .addGap(146, 146, 146)
+                        .addComponent(studentTitle)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         studentLayout.setVerticalGroup(
             studentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addComponent(studentTitle)
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addComponent(qLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(qDesTF, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +300,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(priTF)
                     .addComponent(priCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendBUTT))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mainPanel.add(student, "studentCard");
@@ -301,42 +317,70 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teacher", "Student" }));
 
-        javax.swing.GroupLayout registerPanel1Layout = new javax.swing.GroupLayout(registerPanel1);
-        registerPanel1.setLayout(registerPanel1Layout);
-        registerPanel1Layout.setHorizontalGroup(
-            registerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerPanel1Layout.createSequentialGroup()
+        jButton3.setText("Register");
+
+        javax.swing.GroupLayout registerLayout = new javax.swing.GroupLayout(register);
+        register.setLayout(registerLayout);
+        registerLayout.setHorizontalGroup(
+            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(registerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(registerPanel1Layout.createSequentialGroup()
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(registerLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(202, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registerLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(registerLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(registerLayout.createSequentialGroup()
+                        .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(registerLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField3))
+                            .addGroup(registerLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jTextField4)))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
-        registerPanel1Layout.setVerticalGroup(
-            registerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerPanel1Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jLabel1)
+        registerLayout.setVerticalGroup(
+            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(registerLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(registerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
-        mainPanel.add(registerPanel1, "registerCard");
+        mainPanel.add(register, "registerCard");
 
         getContentPane().add(mainPanel, "mainCard");
 
@@ -346,24 +390,25 @@ public class MainFrame extends javax.swing.JFrame {
     private void userTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userTFActionPerformed
-
+    //Method Created by Anthony Sare
+    //Mathod used to access database and verify inputted user information against saved users and access said user
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
             User tempUser = new User(userLBL.getText(), passLBL.getText());
-            if (Database.logIn(tempUser.getUsername(), "12345") != null) {
+            if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) != null) {
                 if (currentUser.getUserType() == 0) {
                     CardLayout card = (CardLayout) mainPanel.getLayout();
                     card.show(mainPanel, "studentCard");
-                    
+
                 } else if (currentUser.getUserType() == 1) {
                     CardLayout card = (CardLayout) mainPanel.getLayout();
                     card.show(mainPanel, "teacherCard");
                 } else {
                     JOptionPane.showMessageDialog(null, "Usertype does not exist");
                 }
-            }else if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) == null){
-                System.out.println("Didnt work");
+            } else if (Database.logIn(tempUser.getUsername(), tempUser.getPassword()) == null) {
+                JOptionPane.showMessageDialog(null, "Login Failed");
             }
         } catch (NullPointerException e) {
             System.out.println(e);
@@ -375,8 +420,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         CardLayout card = (CardLayout) mainPanel.getLayout();
-                    card.show(mainPanel, "registerCard");
+        card.show(mainPanel, "registerCard");
     }//GEN-LAST:event_jButton2ActionPerformed
+    //Method created by Anthony
+    //Send question to database based on paramaters inputted
+    private void sendBUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBUTTActionPerformed
+        // TODO add your handling code here:
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        Question q = new Question(currentUser.getUsername(), dateFormat.format(date), qDesTF.getText(), true, (int) priCB.getSelectedItem());
+    }//GEN-LAST:event_sendBUTTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,6 +470,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane doneLST;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -427,6 +481,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel logTitle;
     private finalprojectswinggui.Login login;
     private finalprojectswinggui.MainPanel mainPanel;
@@ -441,7 +499,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane qDesLST;
     private javax.swing.JTextField qDesTF;
     private javax.swing.JLabel qLBL;
-    private finalprojectswinggui.registerPanel registerPanel1;
+    private finalprojectswinggui.registerPanel register;
     private javax.swing.JButton sendBUTT;
     private finalprojectswinggui.Student student;
     private javax.swing.JLabel studentLBL;

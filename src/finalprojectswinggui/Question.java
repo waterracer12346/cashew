@@ -18,6 +18,10 @@ public class Question extends javax.swing.JPanel {
         initComponents();
     }
 
+    Question(String username, String format, String text, boolean b, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

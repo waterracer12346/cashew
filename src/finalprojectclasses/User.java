@@ -10,7 +10,9 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author 068042449
+ * @author Anthony Sare
+ * 
+ * User class containing all relevant information for users
  */
 public class User {
 
@@ -21,7 +23,7 @@ public class User {
     private int userType;
 
     private MessageDigest md = null;
-
+    //Main constructor for creating new users
     public User(String user, String pass, String f, String l, int ut) {
         username = user;
         password = encrypt(pass);
@@ -29,12 +31,13 @@ public class User {
         lName = l;
         userType = ut;
     }
-
+    //Alternative constructor for checking username/password
     public User(String user, String pass) {
         username = user;
         password = pass;
     }
-
+    //Method created by Anthony
+    //Method for encrypting password when creating user
     public String encrypt(String s) {
         try {
             setMd(MessageDigest.getInstance("SHA-256")); //Creating method digest instance with SHA-256 algorithm
@@ -50,7 +53,7 @@ public class User {
             return null;
         }
     }
-
+    //Turn user to String for database
     public String toString() {
         return username + "," + password + "," + fName + "," + lName + "," + userType;
     }

@@ -7,7 +7,7 @@ package finalprojectclasses;
 
 /**
  *
- * @author 068042449
+ * @author James Yago
  */
 public class Question {
 
