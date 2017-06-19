@@ -13,9 +13,14 @@ import java.util.Scanner;
 /**
  *
  * @author Chris McLelland
+ * All things in this class are written by the above author
  */
 public class Database {
 
+    /**
+     * Connect to the database on the network
+     * @return The connection if the connection occurs
+     */
     public static Connection connectDB() {
         Connection connection = null;
         try {
@@ -28,9 +33,10 @@ public class Database {
     }
 
     /**
-     *
-     * @param f
-     * @param i
+     * Register a file of users to the database
+     * 
+     * @param f File that is being added to the database
+     * @param i int to help count everything
      * @throws FileNotFoundException
      * @throws SQLException
      */
@@ -38,7 +44,6 @@ public class Database {
         Scanner scan = new Scanner(f);
         Connection con = connectDB();
         Statement stmt = null;
-        ResultSet rs;
         scan.useDelimiter(",");
         while (scan.hasNext()) {
             String username = scan.next();
@@ -107,6 +112,16 @@ public class Database {
         return 2;
     }
 
+    /**
+     * Send a question to the database
+     * 
+     * @param username The id of the user
+     * @param question The question that the user is asking
+     * @param priority The priority of the question
+     * @param active Whether the question is active or not
+     * @param ldt Local Date Time, the timestamp of the question
+     * @throws SQLException
+     */
     public static void question(String username, String question, String priority, boolean active, LocalDateTime ldt) throws SQLException {
         Connection con = connectDB();
         Statement stmt;
@@ -127,6 +142,13 @@ public class Database {
         }
     }
 
+    /**
+     * Set the activity of the question
+     * 
+     * @param active Whether the question is active or not
+     * @param id The id of the user
+     * @throws SQLException
+     */
     public static void done(boolean active, String id) throws SQLException {
         active = false;
         Connection con = connectDB();
