@@ -8,7 +8,7 @@ package finalprojectswinggui;
 import finalprojectclasses.User;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
-import olympicsnetbeansproject.Database;
+import Database.Database;
 
 /**
  *
